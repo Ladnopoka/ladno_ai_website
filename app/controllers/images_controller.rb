@@ -1,15 +1,20 @@
 class ImagesController < ApplicationController
-  def index
-  end
-
   def generate_image
-    # For now, we’ll use a placeholder image.
-    # In a real scenario, you would call your AI image API here.
-    @image_url = "/test_images/1.png"
+    # Define image directory
+    images_path = Rails.root.join("public", "test_images")
 
-    respond_to do |format|
-      format.html { render :index }
-      # If you add JavaScript handling later, you could support format.js.
+    # Get all image files (supports .jpg, .jpeg, .png, .gif)
+    image_files = Dir.glob(images_path.join("*.{jpg,jpeg,png,gif}"))
+
+    if image_files.any?
+      # Pick a random image
+      @image_url = "/test_images/" + File.basename(image_files.sample)
+    else
+      flash[:alert] = "No images found in the directory."
+      @image_url = nil
     end
+
+    # Render the view
+    render :index
   end
 end
