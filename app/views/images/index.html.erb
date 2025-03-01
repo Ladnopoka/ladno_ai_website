@@ -1,0 +1,14 @@
+<h1>Generate AI Image</h1>
+<%= form_with url: generate_image_path, method: :post, local: true do %>
+  <div>
+    <%= label_tag :prompt, "Enter your prompt:" %>
+    <%= text_field_tag :prompt %>
+  </div>
+  <div>
+    <%= submit_tag "Generate Image" %>
+  </div>
+<% end %>
+
+<div id="image-result">
+  <!-- Your generated image will appear here -->
+</div>
