@@ -1,14 +1,30 @@
-<h1>Generate AI Image</h1>
-<%= form_with url: generate_image_path, method: :post, local: true do %>
-  <div>
-    <%= label_tag :prompt, "Enter your prompt:" %>
-    <%= text_field_tag :prompt %>
+<div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+  <h1 class="text-4xl md:text-6xl font-bold mb-8 tracking-wide">Generate AI Image</h1>
+  
+  <div class="w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-xl">
+    <%= form_with url: generate_image_path, method: :post, data: { turbo: "false" } do %>
+      <div class="mb-6">
+        <%= label_tag :prompt, "Enter your prompt:", class: "block text-lg font-medium mb-2 text-gray-200" %>
+        <%= text_field_tag :prompt, nil, class: "w-full p-3 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+      <div class="text-center">
+        <%= submit_tag "Generate Image", class: "px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition duration-150" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= submit_tag "Generate Image" %>
-  </div>
-<% end %>
 
-<div id="image-result">
-  <!-- Your generated image will appear here -->
+  <div id="image-result" class="mt-10">
+    <% if @image_url %>
+      <%= image_tag @image_url, alt: "Template Image", class: "rounded-lg shadow-2xl" %>
+    <% else %>
+      <!-- Techy AI Placeholder -->
+      <div class="flex flex-col items-center justify-center p-10 bg-gray-800 rounded-lg shadow-xl animate-pulse">
+        <!-- Using a Heroicon style SVG for a futuristic look -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-blue-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L7 12.75m0 0L9.75 9.5M7 12.75h13.5" />
+        </svg>
+        <p class="text-gray-300 text-lg">Your AI image will appear here</p>
+      </div>
+    <% end %>
+  </div>
 </div>

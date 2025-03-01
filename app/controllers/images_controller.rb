@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   def generate_image
     # For now, we’ll use a placeholder image.
     # In a real scenario, you would call your AI image API here.
-    @image_url = "https://via.placeholder.com/300"
+    @image_url = "/test_images/1.png"
 
     respond_to do |format|
       format.html { render :index }
