@@ -1,1 +1,28 @@
-@import "tailwindcss";
+/* application.css (or application.tailwind.css) */
+
+/* Import fonts if desired */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles in Tailwind layers */
+@layer base {
+  body {
+    /* Replace bg-black with the arbitrary value syntax */
+    @apply bg-[#000000] text-[#ffffff] font-sans;
+  }
+}
+
+@layer components {
+  .my-card {
+    @apply bg-gray-800 rounded-lg shadow-xl p-6;
+  }
+}
+
+@layer utilities {
+  .border-glow {
+    @apply border-2 border-blue-500 shadow-md transition;
+  }
+}
